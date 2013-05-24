@@ -31,7 +31,7 @@ development:
   database: postgres
   pool: 5
   username: postgres
-  password: ok
+  password: p@$tgres
 
 test:
   adapter:  postgresql
@@ -39,7 +39,7 @@ test:
   database: postgres
   pool: 5
   username: postgres
-  password: ok
+  password: p@$tgres
 
 production: 
   adapter:  postgresql
@@ -47,4 +47,4 @@ production:
   database: postgres
   pool: 5
   username: postgres
-  password: ok
+  password: p@$tgres
