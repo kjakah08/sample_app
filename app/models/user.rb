@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_secure_password #very important, succinct way to secure passwords
 
   #saves a lowercase email address
-  before_save { |user| user.email = email.downcase }
+  before_save { email.downcase! }
 
   #checks if 'name' is input, onte: don't need paranthesis
   validates :name, presence: true, length: { maximum: 50 }
