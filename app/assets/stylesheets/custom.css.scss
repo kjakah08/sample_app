@@ -72,6 +72,14 @@ p {
 
 				/* header */
 
+ul.nav li.dropdown:hover ul.dropdown-menu{
+display: block;    
+}
+
+a.menu:after, .dropdown-toggle:after {
+    content: none;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
