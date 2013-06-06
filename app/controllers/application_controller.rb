@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   #Force singout to prevent CSRF attacks
-  def hanlde_unverifid_reques
+  def handle_unverifid_request
   	sign_out
   	super
   end

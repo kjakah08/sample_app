@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password])
 			sign_in user
-			redirect_to user
+			redirect_back_or user
 		else
 			#Flash.now allows for an error only on page first appeared
 			flash.now[:error] = 'Invalid email/password combination' 
@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
 
 	def destroy
 		sign_out
-		redirect_to root_url
+		redirect_to root_url, notice: "Logged out"
 	end
 end
