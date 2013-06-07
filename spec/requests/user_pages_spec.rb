@@ -11,14 +11,23 @@ describe "User pages" do
 		it { should have_selector('title',  text: full_title('Sign up')) }
 	end
 
-	describe "profile page" do
-		let(:user) { FactoryGirl.create(:user) }
-		#Code to make a user variable
-		before { visit user_path(user) }
+  	describe "profile page" do
+    	let(:user) { FactoryGirl.create(:user) }
+    	let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
+    	let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
 
-		it { should have_selector('h1',    text: user.name) }
-		it { should have_selector('title', text: user.name) }
-	end
+    	before { visit user_path(user) }
+
+    	it { should have_selector('h1',    text: user.name) }
+    	it { should have_selector('title', text: user.name) }
+
+    	describe "microposts" do
+      		it { should have_content(m1.content) }
+      		it { should have_content(m2.content) }
+      		it { should have_content(user.microposts.count) }
+      	end
+    end
+
 
 	describe "signup" do
 		before { visit signup_path }
@@ -143,5 +152,5 @@ describe "User pages" do
 				it { should_not have_link('delete', href: user_path(admin)) }
 			end
 		end
-	end
+	end	
 end

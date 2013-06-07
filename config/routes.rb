@@ -2,7 +2,9 @@ SampleApp::Application.routes.draw do
 
   # Can access all the RESTfulcommands due to this input, table 7.1 in guide
   resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions,   only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
+
 
   #the Sessions resource actions
   match '/signup',  to: 'users#new'

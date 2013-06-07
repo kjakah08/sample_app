@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "StaticPages" do
+describe "Static Pages" do
   
   #inputs symbol ":base_title" to allow for setting title
   subject { page } # lets the page variable be the subject of tests
@@ -18,6 +18,22 @@ describe "StaticPages" do
 
     it_should_behave_like "all static pages"  #Puts the copied section here,
     it { should_not have_selector 'title', text: ' | Home' }
+
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user: user, content: "Lorem ipsum")
+        FactoryGirl.create(:micropost, user: user, content: "Dolor sit amet")
+        sign_in user
+        visit root_path
+      end
+
+      it "should render the user's feed" do
+        user.feed.each do |item| 
+          page.should have_selector("li##{item.id}", test: item.content)
+        end
+      end
+    end
   end
 
   describe "Help page" do
