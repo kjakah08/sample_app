@@ -28,15 +28,16 @@
 development:
   adapter:  postgresql
   encoding: UTF8
-  database: postgres
+  database: sample_app_dev
   pool: 5
   username: postgres
   password: p@$tgres
 
+
 test:
   adapter:  postgresql
   encoding: UTF8
-  database: postgres
+  database: sample_app_test
   pool: 5
   username: postgres
   password: p@$tgres
@@ -44,7 +45,7 @@ test:
 production: 
   adapter:  postgresql
   encoding: UTF8
-  database: postgres
+  database: sample_app_prod
   pool: 5
   username: postgres
   password: p@$tgres

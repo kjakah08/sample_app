@@ -1,9 +1,15 @@
 SampleApp::Application.routes.draw do
 
   # Can access all the RESTfulcommands due to this input, table 7.1 in guide
-  resources :users
-  resources :sessions,   only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy]
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  
+  resources :sessions,      only: [:new, :create, :destroy]
+  resources :microposts,    only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
 
   #the Sessions resource actions
